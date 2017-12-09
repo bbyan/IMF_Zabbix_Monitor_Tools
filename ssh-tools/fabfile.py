@@ -1,3 +1,4 @@
+
 from fabric.api import run, env, roles, execute
 from fabric.colors import red
 from fabric.state import output
@@ -8,7 +9,7 @@ env.roledefs = {
 }
 output['commands'] = False
 
-df_command = 'df -h'
+df = 'df -h'
 
 
 def print_red(command):
@@ -17,7 +18,7 @@ def print_red(command):
 
 @roles('ibuser')
 def task1():
-    print_red(df_command)
+    print_red(df)
 
 
 def dotask():
