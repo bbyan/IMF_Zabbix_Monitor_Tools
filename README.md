@@ -2,6 +2,7 @@
 ### Log_Analyze主要存放日志分析类型的脚本
 - afds_log_analysis用途是分析afds服务航班消息日志最后下发时间
 
+- nginx_analysis用途是分析子系统是否在最近向NGINX请求过消息
 
 - aftn_analyze用途是分析AFTN报文消息的完整性
 > AFTN消息的开头以 `ZZZZ` 为起始，以`NNNN`为结尾。通过判定文件内`ZZZZ`和`NNNN`的差值来判定AFTN消息是否完整。
