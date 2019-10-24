@@ -7,14 +7,15 @@ from datetime import datetime
 fmt = '%(asctime)s %(levelname)s %(module)s %(message)s'
 dateFmt = '%Y-%m-%d %H:%M:%S'
 
-logging.basicConfig(level=logging.INFO, format=fmt, datefmt=dateFmt, filename='/Users/lubin/Desktop/test.log',
+logging.basicConfig(level=logging.INFO, format=fmt, datefmt=dateFmt, filename='/var/log/analyze/afds_analysis.log',
                     filemode='aw')
 
 
 def run_curl():
-    # cmd = 'curl -u ibuser:57336969 -k "sftp://10.211.55.101/home/ibuser/afds_aims.log"  -r -512000 -s'
-    cmd = 'curl --noproxy "*" -u nginx: --pubkey /Users/lubin/.ssh/id_rsa.pub ' \
-          '--key /Users/lubin/.ssh/id_rsa -k "sftp://10.99.1.130/home/nginx/afds_aims.log"  -r -512000 -s'
+    cmd = 'curl -u lubin:57336969 -k "sftp://127.0.0.1/mnt/c/Users/bbyan/afds_aims.log"  -r -512000 -s'
+    #cmd = 'curl -u ibuser:57336969 -k "sftp://10.211.55.101/home/ibuser/afds_aims.log"  -r -512000 -s'
+    #cmd = 'curl --noproxy "*" -u nginx: --pubkey /Users/lubin/.ssh/id_rsa.pub ' \
+    #      '--key /Users/lubin/.ssh/id_rsa -k "sftp://10.99.1.130/home/nginx/afds_aims.log"  -r -512000 -s'
     returnlist = os.popen(cmd).readlines()
     return returnlist
 
@@ -49,7 +50,7 @@ if __name__ == '__main__':
     time_difference = (system_date_time - last_afds_occur_time).seconds / 60
     logging.info('The difference between the two times is   : ' + time_difference.__str__())
 
-    if time_difference >= 3:
+    if time_difference <= 10:
         print('1')
         logging.info('The status is                             : 1')
     else:
